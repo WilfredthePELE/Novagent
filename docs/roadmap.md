@@ -9,12 +9,15 @@
 - [x] Base service classes
 - [x] AGENTS.md with development guidelines
 
-## Phase 2: Core Services
-- [ ] Proposal generation with Jinja2 templates
-- [ ] Invoice PDF generation
-- [ ] Receipt management system
-- [ ] Job report builder
-- [ ] CLI interface (`novagent` command)
+## Phase 2: Core Services ✅
+- [x] Proposal generation with Jinja2 templates
+- [x] Invoice HTML/Markdown generation
+- [x] Receipt management system
+- [x] Job report builder (Markdown + HTML)
+- [x] CLI interface (`novagent` command with 16 subcommands)
+- [x] Template rendering engine (Jinja2, 4 template files)
+- [x] Document builder (proposal, invoice, receipt, report)
+- [x] 27 automated tests covering all Phase 2 features
 
 ## Phase 3: Delivery & Integration
 - [ ] REST API server

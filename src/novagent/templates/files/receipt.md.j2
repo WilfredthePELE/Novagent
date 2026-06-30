@@ -1,0 +1,27 @@
+# {{ brand_name }} — {{ tagline }}
+
+## Receipt
+
+**Receipt #:** {{ receipt.receipt_number }}
+**Date:** {{ receipt.issue_date | date }}
+**Status:** {{ receipt.status.value | upper }}
+
+---
+
+**Received From:** {{ receipt.paid_by }}
+**Amount:** {{ receipt.amount | currency }} {{ receipt.currency }}
+**Payment Method:** {{ receipt.payment_method }}
+{% if receipt.reference %}**Reference:** {{ receipt.reference }}{% endif %}
+{% if receipt.notes %}**Notes:** {{ receipt.notes }}{% endif %}
+
+---
+
+{% for item in receipt.line_items %}
+  - {{ item.description }}: {{ item.amount | currency }}
+{% endfor %}
+
+**Total Paid: {{ receipt.amount | currency }} {{ receipt.currency }}**
+
+---
+*This is a computer-generated receipt. No signature required.*
+*{{ brand_name }} — Intelligence That Delivers*
