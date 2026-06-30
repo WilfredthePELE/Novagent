@@ -33,16 +33,33 @@ novagent
 ```
 Novagent/
 ├── src/
-│   └── novagent/         # Core application package
-│       ├── config.py      # Configuration management
-│       ├── models/        # Data models (proposals, invoices, reports)
-│       ├── services/      # Business logic services
-│       └── main.py        # Entry point
-├── tests/                 # Test suite
-├── docs/                  # Documentation & roadmap
-├── AGENTS.md              # Agentic development guidelines
-├── pyproject.toml         # Project metadata & dependencies
-└── README.md              # This file
+│   └── novagent/
+│       ├── __init__.py       # Version 0.1.0
+│       ├── config.py         # NovagentConfig dataclass
+│       ├── main.py           # CLI entry point (16 subcommands)
+│       ├── models/           # Pydantic v2 data models
+│       │   ├── proposal.py   # Proposal, ProposalSection
+│       │   ├── invoice.py    # Invoice, InvoiceLineItem
+│       │   ├── receipt.py    # Receipt, ReceiptLineItem
+│       │   └── report.py     # JobReport, Milestone
+│       ├── services/         # Business logic
+│       │   ├── proposal_service.py
+│       │   ├── invoice_service.py
+│       │   ├── receipt_service.py
+│       │   └── report_service.py
+│       ├── templates/        # Jinja2 templates (4 files)
+│       │   └── files/
+│       │       ├── proposal.md.j2
+│       │       ├── invoice.html.j2
+│       │       ├── receipt.md.j2
+│       │       └── report.md.j2
+│       └── output/           # DocumentBuilder — MD + HTML generation
+├── tests/                    # pytest suite
+├── docs/
+│   └── roadmap.md
+├── AGENTS.md
+├── pyproject.toml
+└── README.md
 ```
 
 ## 🧠 Capabilities

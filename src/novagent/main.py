@@ -345,7 +345,7 @@ def report_create(title: str, client_name: str, description: str, output: str | 
 @click.option("--output", "-o", default=None, help="Output directory")
 def report_render(report_id: str, fmt: str, output: str | None) -> None:
     """Render a report to file (demo: creates a sample report)."""
-    from novagent.models.report import JobReport, Milestone
+    from novagent.models.report import JobReport, Milestone, MilestoneStatus
     from datetime import datetime
 
     r = JobReport(
@@ -355,10 +355,10 @@ def report_render(report_id: str, fmt: str, output: str | None) -> None:
         project_description="Full-stack web application development and deployment.",
         summary="All milestones completed successfully ahead of schedule.",
         milestones=[
-            Milestone(title="Requirements Gathering", status=type(Milestone.__pydantic_fields__["status"].default)("completed"), completed_at=datetime.utcnow()),
-            Milestone(title="Design Phase", status=type(Milestone.__pydantic_fields__["status"].default)("completed"), completed_at=datetime.utcnow()),
-            Milestone(title="Development", status=type(Milestone.__pydantic_fields__["status"].default)("completed"), completed_at=datetime.utcnow()),
-            Milestone(title="Testing & QA", status=type(Milestone.__pydantic_fields__["status"].default)("completed"), completed_at=datetime.utcnow()),
+            Milestone(title="Requirements Gathering", status=MilestoneStatus.COMPLETED, completed_at=datetime.utcnow()),
+            Milestone(title="Design Phase", status=MilestoneStatus.COMPLETED, completed_at=datetime.utcnow()),
+            Milestone(title="Development", status=MilestoneStatus.COMPLETED, completed_at=datetime.utcnow()),
+            Milestone(title="Testing & QA", status=MilestoneStatus.COMPLETED, completed_at=datetime.utcnow()),
         ],
         deliverables=["Source code repository", "Deployment guide", "API documentation", "Test suite"],
         hours_worked=120.5,

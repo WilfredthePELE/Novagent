@@ -35,7 +35,7 @@ class Invoice(BaseModel):
     """A complete invoice document."""
 
     id: str = Field(default_factory=lambda: f"INV-{datetime.utcnow().strftime('%Y%m%d-%H%M%S')}")
-    invoice_number: str = Field(default_factory=lambda: datetime.utcnow().strftime('INV-%Y%m%d-%H%M%S'))
+    invoice_number: Optional[str] = None
     client_name: str
     client_address: Optional[str] = None
     status: InvoiceStatus = InvoiceStatus.DRAFT
@@ -48,6 +48,10 @@ class Invoice(BaseModel):
     issue_date: datetime = Field(default_factory=datetime.utcnow)
     due_date: Optional[datetime] = None
     paid_date: Optional[datetime] = None
+
+    def model_post_init(self, __context) -> None:
+        if self.invoice_number is None:
+            self.invoice_number = self.id
 
     def calculate_totals(self) -> None:
         """Recalculate subtotal, tax, and total."""
